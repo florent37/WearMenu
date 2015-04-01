@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.florent37.WearMenuListItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:id="@+id/layout"
+    android:gravity="center_vertical"
+    tools:background="#AAA"
+    >
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_height="30dp"
+        android:layout_width="30dp"
+        android:layout_margin="16dp"
+        android:scaleType="centerInside"
+        android:padding="7dp"
+        android:background="@drawable/wl_circle"
+        android:src="@drawable/common_full_open_on_phone"
+       />
+    <TextView
+        android:id="@+id/text"
+        android:gravity="center_vertical|left"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_height="match_parent"
+        android:fontFamily="sans-serif-condensed-light"
+        android:lineSpacingExtra="-4sp"
+        tools:text="Text"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"/>
+</com.github.florent37.WearMenuListItemLayout>

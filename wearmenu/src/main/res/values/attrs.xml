@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="WearMenu">
+        <attr name="layout" format="reference"/>
+        <attr name="selectedColor" format="color"/>
+
+        <attr name="position">
+            <enum name="topLeft" value="0"/>
+            <enum name="topRight" value="1"/>
+            <enum name="bottomLeft" value="2"/>
+            <enum name="bottomRight" value="3"/>
+        </attr>
+    </declare-styleable>
+
+</resources>
