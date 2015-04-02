@@ -15,7 +15,6 @@
         android:scaleType="centerInside"
         android:padding="7dp"
         android:background="@drawable/wl_circle"
-        android:src="@drawable/common_full_open_on_phone"
        />
     <TextView
         android:id="@+id/text"
