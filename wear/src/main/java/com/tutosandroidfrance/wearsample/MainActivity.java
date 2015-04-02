@@ -72,23 +72,6 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     }
 
     /**
-     * Créé une liste d'éléments pour l'affichage
-     */
-    private List<Element> creerListElements() {
-        List<Element> list = new ArrayList<>();
-
-        list.add(new Element("Element 1", "Description 1", Color.parseColor("#F44336")));
-        list.add(new Element("Element 2", "Description 2", Color.parseColor("#E91E63")));
-        list.add(new Element("Element 3", "Description 3", Color.parseColor("#9C27B0")));
-        list.add(new Element("Element 4", "Description 4", Color.parseColor("#673AB7")));
-        list.add(new Element("Element 5", "Description 5", Color.parseColor("#3F51B5")));
-        list.add(new Element("Element 6", "Description 6", Color.parseColor("#2196F3")));
-
-        return list;
-    }
-
-
-    /**
      * A l'ouverture, connecte la montre au Google API Client / donc au smartphone
      */
     @Override
@@ -166,7 +149,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                 //nous affichons ici dans notre viewpager
 
                 if (pager != null && pager.getAdapter() == null)
-                    pager.setAdapter(new ElementGridPagerAdapter(elementList, getFragmentManager()));
+                    pager.setAdapter(new ElementGridPagerAdapter(getApplicationContext(),elementList, getFragmentManager()));
             }
         });
     }
@@ -214,23 +197,6 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                 }
 
             }
-        }
-    }
-
-    /**
-     * Récupère une URI de donnée en fonction d'un path
-     * via l'identifiant nodeId du smartphone
-     */
-    protected Uri getUriForDataItem(String path) {
-        try {
-            //recupère le nodeId du smartphone
-            final String nodeId = Wearable.NodeApi.getConnectedNodes(mApiClient).await().getNodes().get(0).getId();
-            //construit l'uri pointant vers notre path
-            Uri uri = new Uri.Builder().scheme(PutDataRequest.WEAR_URI_SCHEME).authority(nodeId).path(path).build();
-            return uri;
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage(), e);
-            return null;
         }
     }
 

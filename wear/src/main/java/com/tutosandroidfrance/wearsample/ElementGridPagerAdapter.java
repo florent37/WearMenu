@@ -2,6 +2,7 @@ package com.tutosandroidfrance.wearsample;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -13,26 +14,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.florent37.davinci.DaVinci;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ElementGridPagerAdapter extends FragmentGridPagerAdapter {
 
+    private Context mContext;
     private List<Row> mRows;
     private List<Element> mElement;
 
-    private int[] colors = new int[]{
-            Color.parseColor("#F44336"),
-            Color.parseColor("#E91E63"),
-            Color.parseColor("#9C27B0"),
-            Color.parseColor("#673AB7"),
-            Color.parseColor("#3F51B5"),
-            Color.parseColor("#2196F3")
-    };
-
-    public ElementGridPagerAdapter(List<Element> elements, FragmentManager fm) {
+    public ElementGridPagerAdapter(Context context, List<Element> elements, FragmentManager fm) {
         super(fm);
 
+        this.mContext = context;
         this.mRows = new ArrayList<>();
         this.mElement = elements;
 
@@ -68,7 +64,7 @@ public class ElementGridPagerAdapter extends FragmentGridPagerAdapter {
     //le drawable affichée en background pour la ligne [row]
     @Override
     public Drawable getBackgroundForRow(final int row) {
-        return new ColorDrawable(colors[row%colors.length]);
+        return DaVinci.with(mContext).load(mElement.get(row).getUrl()).into(this,row);
     }
 
     @Override

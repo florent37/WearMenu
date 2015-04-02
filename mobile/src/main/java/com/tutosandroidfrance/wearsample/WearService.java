@@ -1,12 +1,10 @@
 package com.tutosandroidfrance.wearsample;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import com.github.florent37.davinci.daemon.DaVinciDaemon;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.wearable.Asset;
 import com.google.android.gms.wearable.DataMap;
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.Node;
@@ -15,9 +13,6 @@ import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.Wearable;
 import com.google.android.gms.wearable.WearableListenerService;
 
-import java.io.ByteArrayOutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -57,6 +52,7 @@ public class WearService extends WearableListenerService {
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
         super.onMessageReceived(messageEvent);
+        DaVinciDaemon.with(getApplicationContext()).handleMessage(messageEvent);
 
         //Ouvre une connexion vers la montre
         ConnectionResult connectionResult = mApiClient.blockingConnect(30, TimeUnit.SECONDS);
@@ -94,6 +90,7 @@ public class WearService extends WearableListenerService {
     /**
      * Envoie la liste d'éléments à la montre
      * Envoie de même les images
+     *
      * @param elements
      */
     private void envoyerListElements(final List<Element> elements) {
@@ -130,30 +127,6 @@ public class WearService extends WearableListenerService {
     }
 
     /**
-     * Récupère une bitmap à partir d'une URL
-     */
-    public static Bitmap getBitmapFromURL(String src) {
-        try {
-            HttpURLConnection connection = (HttpURLConnection) new URL(src).openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            return BitmapFactory.decodeStream(connection.getInputStream());
-        } catch (Exception e) {
-            // Log exception
-            return null;
-        }
-    }
-
-    /**
-     * Les bitmap transferés depuis les DataApi doivent être empaquetées en Asset
-     */
-    public static Asset createAssetFromBitmap(Bitmap bitmap) {
-        final ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteStream);
-        return Asset.createFromBytes(byteStream.toByteArray());
-    }
-
-    /**
      * Permet d'envoyer une liste d'elements
      */
     protected void sendElements(final List<Element> elements) {
@@ -180,45 +153,19 @@ public class WearService extends WearableListenerService {
 
             //ajoute cette datamap à notre arrayList
             elementsDataMap.add(elementDataMap);
-
         }
 
         //place la liste dans la datamap envoyée à la wear
-        putDataMapRequest.getDataMap().putDataMapArrayList("/list/",elementsDataMap);
+        putDataMapRequest.getDataMap().putDataMapArrayList("/list/", elementsDataMap);
 
         //envoie la liste à la montre
         if (mApiClient.isConnected())
             Wearable.DataApi.putDataItem(mApiClient, putDataMapRequest.asPutDataRequest());
 
-        //puis envoie les images dans un second temps
-        for(int position = 0; position < elements.size(); ++position){
-            //charge l'image associée pour l'envoyer en bluetooth
-            sendImage(elements.get(position).getUrl(), position);
-        }
-    }
+        for (int position = 0; position < elements.size(); ++position)
+            DaVinciDaemon.with(getApplicationContext()).load(elements.get(position).getUrl()).send();
 
-    /**
-     * Permet d'envoyer une image à la montre
-     */
-    protected void sendImage(String url, int position) {
-        //télécharge l'image
-        Bitmap bitmap = getBitmapFromURL(url);
-        if (bitmap != null) {
-            Asset asset = createAssetFromBitmap(bitmap);
 
-            //créé un emplacement mémoire "image/[url_image]"
-            final PutDataMapRequest putDataMapRequest = PutDataMapRequest.create("/image/" + position);
-
-            //ajoute la date de mise à jour, important pour que les données soient mises à jour
-            putDataMapRequest.getDataMap().putString("timestamp", new Date().toString());
-
-            //ajoute l'image à la requête
-            putDataMapRequest.getDataMap().putAsset("image", asset);
-
-            //envoie la donnée à la montre
-            if (mApiClient.isConnected())
-                Wearable.DataApi.putDataItem(mApiClient, putDataMapRequest.asPutDataRequest());
-        }
     }
 
 }
