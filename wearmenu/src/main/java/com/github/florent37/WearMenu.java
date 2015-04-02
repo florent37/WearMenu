@@ -2,10 +2,12 @@ package com.github.florent37;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.wearable.view.GridViewPager;
 import android.support.wearable.view.WearableListView;
 import android.util.AttributeSet;
@@ -112,7 +114,7 @@ public class WearMenu extends FrameLayout implements View.OnClickListener {
             menuView = null;
         }
 
-        menuView = LayoutInflater.from(getContext()).inflate(layoutId, this, false);
+        menuView = LayoutInflater.from(getContext()).inflate(layoutId, null, false);
         menuView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         menuView.setVisibility(GONE);
         addView(menuView);
@@ -128,6 +130,7 @@ public class WearMenu extends FrameLayout implements View.OnClickListener {
         handleAttributes(context, attrs);
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public WearMenu(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         handleAttributes(context, attrs);
@@ -245,7 +248,6 @@ public class WearMenu extends FrameLayout implements View.OnClickListener {
             case MotionEvent.ACTION_UP:
                 if (previousDown && isClickEnabled()) {
                     toggle();
-                    return true;
                 }
             default:
                 previousDown = false;
