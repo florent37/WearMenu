@@ -78,7 +78,6 @@ Display a list
 In your activity, customise the wear list menu
 
 ```java
-WearMenu wearMenu = (WearMenu) findViewById(R.id.wear_menu);
 wearMenu.setMenuElements(
                 new String[]{
                         "title 1",
