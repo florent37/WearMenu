@@ -4,7 +4,9 @@ An Android Wear Menu implementation
 WearMenu
 =======
 
-DaVinci is an Android Wear Menu implementation
+[![Build Status](https://travis-ci.org/florent37/WearMenu.svg)](https://travis-ci.org/florent37/WearMenu)
+
+WearMenu is an Android Wear Menu implementation
 
 Download
 --------
