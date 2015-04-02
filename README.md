@@ -25,6 +25,115 @@ compile 'com.github.florent37:wearmenu:1.0.0@aar'
 Usage
 --------
 
+Add WearMenu above your GridViewPager
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.florent37.WearMenu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/wear_menu"
+    app:position="bottomLeft"
+    >
+
+    <android.support.wearable.view.GridViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:keepScreenOn="true"/>
+
+    <android.support.wearable.view.DotsPageIndicator
+        android:id="@+id/page_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="5dp"/>
+
+</com.github.florent37.WearMenu>
+```
+
+You can change the opening direction of the WearMenu
+
+```xml
+<com.github.florent37.WearMenu
+
+    app:position="bottomLeft"
+    app:position="bottomRight"
+    app:position="topLeft"
+    app:position="topRight"
+```
+
+To open/close manually the WearMenu
+
+```java
+WearMenu wearMenu = (WearMenu) findViewById(R.id.wear_menu);
+wearMenu.toggle();
+```
+
+Display a list
+--------
+
+In your activity, customise the wear list menu
+
+```java
+WearMenu wearMenu = (WearMenu) findViewById(R.id.wear_menu);
+wearMenu.setMenuElements(
+                new String[]{
+                        "title 1",
+                        "title 2",
+                        "title 3",
+                        "title 4"
+                });
+```
+
+You can display elements with icons
+
+```java
+wearMenu.setMenuElements(
+                new String[]{
+                        "title 1",
+                        "title 2",
+                        "title 3",
+                        "title 4"
+                },
+                new Drawable[]{
+                        getResources().getDrawable(R.drawable.icon1),
+                        getResources().getDrawable(R.drawable.icon2),
+                        getResources().getDrawable(R.drawable.icon3),
+                        getResources().getDrawable(R.drawable.icon4)
+                });
+```
+
+And get back the selected element
+```java
+wearMenu.setWearMenuListener(new WearMenu.WearMenuListener() {
+            @Override
+            public void onWearMenuListClicked(int position) {
+
+            }
+        });
+```
+
+
+Display a custom view
+--------
+
+You can display a custom view in WearMenu
+
+```xml
+<com.github.florent37.WearMenu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/wear_menu"
+    app:layout="@layout/myCustomView"
+    app:position="bottomLeft"
+    >
+```
+
 Community
 --------
 

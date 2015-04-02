@@ -69,6 +69,12 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                         getResources().getDrawable(R.drawable.common_signin_btn_icon_light,null)
                 }
         );
+        wearMenu.setWearMenuListener(new WearMenu.WearMenuListener() {
+            @Override
+            public void onWearMenuListClicked(int position) {
+
+            }
+        });
     }
 
     /**
