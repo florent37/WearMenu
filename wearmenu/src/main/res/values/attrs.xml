@@ -2,10 +2,10 @@
 <resources>
 
     <declare-styleable name="WearMenu">
-        <attr name="layout" format="reference"/>
-        <attr name="selectedColor" format="color"/>
+        <attr name="wearMenuLayout" format="reference"/>
+        <attr name="wearMenuSelectedColor" format="color"/>
 
-        <attr name="position">
+        <attr name="wearMenuPosition">
             <enum name="topLeft" value="0"/>
             <enum name="topRight" value="1"/>
             <enum name="bottomLeft" value="2"/>

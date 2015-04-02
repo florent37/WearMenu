@@ -84,19 +84,19 @@ public class WearMenu extends FrameLayout implements View.OnClickListener {
         try {
             TypedArray styledAttrs = context.obtainStyledAttributes(attrs, R.styleable.WearMenu);
             {
-                int viewLayoutId = styledAttrs.getResourceId(R.styleable.WearMenu_layout, -1);
+                int viewLayoutId = styledAttrs.getResourceId(R.styleable.WearMenu_wearMenuLayout, -1);
                 if (viewLayoutId != -1) {
                     setContentView(viewLayoutId);
                 }
             }
             {
-                int position = styledAttrs.getInt(R.styleable.WearMenu_position, -1);
+                int position = styledAttrs.getInt(R.styleable.WearMenu_wearMenuPosition, -1);
                 if (position != -1)
                     this.position = position;
 
             }
             {
-                int color = styledAttrs.getColor(R.styleable.WearMenu_selectedColor, -1);
+                int color = styledAttrs.getColor(R.styleable.WearMenu_wearMenuSelectedColor, -1);
                 if (color != -1)
                     this.mListSelectedColor = color;
 
@@ -176,35 +176,39 @@ public class WearMenu extends FrameLayout implements View.OnClickListener {
 
     public void toggle() {
         if (!animating) {
-            final int radius = (int)Math.sqrt(Math.pow(this.getWidth(),2)+Math.pow(this.getHeight(),2));
-            if (open) {
-                Animator animator = ViewAnimationUtils.createCircularReveal(menuView, getPositionX(), getPositionY(), radius, 0).setDuration(duration);
-                animator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        menuView.setVisibility(INVISIBLE);
-                        open = !open;
-                        animating = false;
-                    }
-                });
-                animating = true;
-                enableClick = true;
-                animator.start();
-            } else {
-                Animator animator = ViewAnimationUtils.createCircularReveal(menuView, getPositionX(), getPositionY(), 0, radius).setDuration(duration);
-                animator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        open = !open;
-                        animating = false;
-                    }
-                });
-                animating = true;
-                enableClick = false;
-                menuView.setVisibility(VISIBLE);
-                animator.start();
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                final int radius = (int) Math.sqrt(Math.pow(this.getWidth(), 2) + Math.pow(this.getHeight(), 2));
+                if (open) {
+                    Animator animator = ViewAnimationUtils.createCircularReveal(menuView, getPositionX(), getPositionY(), radius, 0).setDuration(duration);
+                    animator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            menuView.setVisibility(INVISIBLE);
+                            open = !open;
+                            animating = false;
+                        }
+                    });
+                    animating = true;
+                    enableClick = true;
+                    animator.start();
+                } else {
+                    Animator animator = ViewAnimationUtils.createCircularReveal(menuView, getPositionX(), getPositionY(), 0, radius).setDuration(duration);
+                    animator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            open = !open;
+                            animating = false;
+                        }
+                    });
+                    animating = true;
+                    enableClick = false;
+                    menuView.setVisibility(VISIBLE);
+                    animator.start();
+                }
+            }else{
+
             }
         }
 
@@ -253,6 +257,30 @@ public class WearMenu extends FrameLayout implements View.OnClickListener {
                 previousDown = false;
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public int getListSelectedColor() {
+        return mListSelectedColor;
+    }
+
+    public void setListSelectedColor(int listSelectedColor) {
+        this.mListSelectedColor = mListSelectedColor;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     public void setMenuElements(String[] titles){

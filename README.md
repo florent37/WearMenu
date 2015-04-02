@@ -35,7 +35,7 @@ Add WearMenu above your GridViewPager
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/wear_menu"
-    app:position="bottomLeft"
+    app:wearMenuPosition="bottomLeft"
     >
 
     <android.support.wearable.view.GridViewPager
@@ -59,10 +59,10 @@ You can change the opening direction of the WearMenu
 ```xml
 <com.github.florent37.WearMenu
 
-    app:position="bottomLeft"
-    app:position="bottomRight"
-    app:position="topLeft"
-    app:position="topRight"
+    app:wearMenuPosition="bottomLeft"
+    app:wearMenuPosition="bottomRight"
+    app:wearMenuPosition="topLeft"
+    app:wearMenuPosition="topRight"
 ```
 
 To open/close manually the WearMenu
@@ -128,8 +128,8 @@ You can display a custom view in WearMenu
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/wear_menu"
-    app:layout="@layout/myCustomView"
-    app:position="bottomLeft"
+    app:wearMenuLayout="@layout/myCustomView"
+    app:wearMenuPosition="bottomLeft"
     >
 ```
 
