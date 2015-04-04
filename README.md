@@ -170,8 +170,10 @@ Modify animation duration (500ms by default)
 TODO
 --------
 
+- Adding circle animation from touch position
 - Enabling fill list from xml layout
 - Adding preview for tools: package
+- Adding custom colors for each list element
 
 Community
 --------
