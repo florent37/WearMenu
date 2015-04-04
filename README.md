@@ -5,6 +5,8 @@ WearMenu
 
 WearMenu is an Android Wear Menu implementation
 
+![alt gif](https://raw.github.com/florent37/WearMenu/tree/master/wear/src/main/res/drawable/wearmenu.gif)
+
 Download
 --------
 
