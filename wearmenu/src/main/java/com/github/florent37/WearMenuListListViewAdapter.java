@@ -17,20 +17,22 @@ public class WearMenuListListViewAdapter extends WearableListView.Adapter {
     private Context mContext;
     private LayoutInflater mInflater;
     private int mListSelectedColor;
+    private int mListTextColor;
 
     public WearMenuListListViewAdapter(Context context, List<String> titles) {
         mContext = context;
         mInflater = LayoutInflater.from(context);
     }
 
-    public WearMenuListListViewAdapter(Context context, List<String> titles, int listSelectedColor) {
+    public WearMenuListListViewAdapter(Context context, List<String> titles, int listTextColor, int listSelectedColor) {
         this(context,titles);
         mTitles = titles;
         mListSelectedColor = listSelectedColor;
+        mListTextColor = listTextColor;
     }
 
-    public WearMenuListListViewAdapter(Context context, List<String> titles, List<Drawable> drawables, int listSelectedColor) {
-        this(context,titles,listSelectedColor);
+    public WearMenuListListViewAdapter(Context context, List<String> titles, List<Drawable> drawables, int listTextColor, int listSelectedColor) {
+        this(context,titles,listTextColor, listSelectedColor);
         mDrawables = drawables;
     }
 
@@ -38,6 +40,7 @@ public class WearMenuListListViewAdapter extends WearableListView.Adapter {
     public WearableListView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         WearMenuListItemLayout layout = (WearMenuListItemLayout) mInflater.inflate(R.layout.wearmenu_list_element, null);
         layout.setListSelectedColor(mListSelectedColor);
+        layout.setListTextColor(mListTextColor);
         return new WearMenuListViewAdapterViewHolder(layout);
     }
 

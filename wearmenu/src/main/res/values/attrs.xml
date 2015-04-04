@@ -3,7 +3,11 @@
 
     <declare-styleable name="WearMenu">
         <attr name="wearMenuLayout" format="reference"/>
-        <attr name="wearMenuSelectedColor" format="color"/>
+        <attr name="wearMenuDuration" format="integer"/>
+
+        <attr name="wearMenuListTextColor" format="color"/>
+        <attr name="wearMenuListSelectedColor" format="color"/>
+        <attr name="wearMenuListBackground" format="reference"/>
 
         <attr name="wearMenuPosition">
             <enum name="topLeft" value="0"/>

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/wear_menu"
     app:wearMenuPosition="bottomLeft"
+    app:wearMenuDuration="300"
     >
 
     <android.support.wearable.view.GridViewPager

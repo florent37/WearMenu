@@ -7,7 +7,6 @@ import android.graphics.drawable.GradientDrawable;
 import android.support.wearable.view.WearableListView;
 import android.util.AttributeSet;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -91,5 +90,9 @@ public class WearMenuListItemLayout extends LinearLayout
 
     public void setListSelectedColor(int listSelectedColor) {
         this.mSelectedCircleColor = listSelectedColor;
+    }
+
+    public void setListTextColor(int listTextColor) {
+        this.mTitle.setTextColor(listTextColor);
     }
 }

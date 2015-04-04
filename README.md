@@ -116,7 +116,7 @@ wearMenu.setWearMenuListener(new WearMenu.WearMenuListener() {
 ```
 
 
-Display a custom view
+Customisation
 --------
 
 You can display a custom view in WearMenu
@@ -132,6 +132,42 @@ You can display a custom view in WearMenu
     app:wearMenuPosition="bottomLeft"
     >
 ```
+
+Changing colors & backgrounds
+
+```xml
+<com.github.florent37.WearMenu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/wear_menu"
+    app:wearMenuPosition="bottomLeft"
+    app:wearMenuListTextColor="@color/blue"
+    app:wearMenuListSelectedColor="@color/red"
+    app:wearMenuListBackground="@color/black"
+    >
+```
+
+Modify animation duration (500ms by default)
+
+```xml
+<com.github.florent37.WearMenu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/wear_menu"
+    app:wearMenuPosition="bottomLeft"
+    app:wearMenuDuration="300"
+    >
+```
+
+TODO
+--------
+
+- Enabling fill list from xml layout
+- Adding preview for tools: package
 
 Community
 --------

@@ -37,8 +37,9 @@ public class WearMenu extends FrameLayout implements View.OnClickListener {
     private int position = POSITION_TOP_LEFT;
 
     private int mListSelectedColor = Color.parseColor("#2955C5");
+    private int mListTextColor = Color.BLACK;
 
-    private int duration = 500;
+    private int mDuration = 500;
     private boolean open = false;
     private boolean animating = false;
 
@@ -46,6 +47,7 @@ public class WearMenu extends FrameLayout implements View.OnClickListener {
     private boolean previousDown = false; //used for click detection
 
     private WearMenuListener mWearMenuListener;
+    private int mListBackgroundId;
 
     public WearMenu(Context context) {
         super(context);
@@ -96,10 +98,24 @@ public class WearMenu extends FrameLayout implements View.OnClickListener {
 
             }
             {
-                int color = styledAttrs.getColor(R.styleable.WearMenu_wearMenuSelectedColor, -1);
+                int color = styledAttrs.getColor(R.styleable.WearMenu_wearMenuListSelectedColor, -1);
                 if (color != -1)
                     this.mListSelectedColor = color;
-
+            }
+            {
+                int color = styledAttrs.getColor(R.styleable.WearMenu_wearMenuListTextColor, -1);
+                if (color != -1)
+                    this.mListTextColor = color;
+            }
+            {
+                int backgroundId = styledAttrs.getResourceId(R.styleable.WearMenu_wearMenuListBackground, -1);
+                if (backgroundId != -1)
+                    this.mListBackgroundId = backgroundId;
+            }
+            {
+                int duration = styledAttrs.getResourceId(R.styleable.WearMenu_wearMenuDuration, -1);
+                if (duration != -1)
+                    this.mDuration = duration;
             }
             styledAttrs.recycle();
         } catch (Exception e) {
@@ -179,7 +195,7 @@ public class WearMenu extends FrameLayout implements View.OnClickListener {
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 final int radius = (int) Math.sqrt(Math.pow(this.getWidth(), 2) + Math.pow(this.getHeight(), 2));
                 if (open) {
-                    Animator animator = ViewAnimationUtils.createCircularReveal(menuView, getPositionX(), getPositionY(), radius, 0).setDuration(duration);
+                    Animator animator = ViewAnimationUtils.createCircularReveal(menuView, getPositionX(), getPositionY(), radius, 0).setDuration(mDuration);
                     animator.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
@@ -193,7 +209,7 @@ public class WearMenu extends FrameLayout implements View.OnClickListener {
                     enableClick = true;
                     animator.start();
                 } else {
-                    Animator animator = ViewAnimationUtils.createCircularReveal(menuView, getPositionX(), getPositionY(), 0, radius).setDuration(duration);
+                    Animator animator = ViewAnimationUtils.createCircularReveal(menuView, getPositionX(), getPositionY(), 0, radius).setDuration(mDuration);
                     animator.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
@@ -259,6 +275,8 @@ public class WearMenu extends FrameLayout implements View.OnClickListener {
         return super.dispatchTouchEvent(ev);
     }
 
+    //region getters/setters
+
     public int getPosition() {
         return position;
     }
@@ -276,12 +294,30 @@ public class WearMenu extends FrameLayout implements View.OnClickListener {
     }
 
     public int getDuration() {
-        return duration;
+        return mDuration;
     }
 
     public void setDuration(int duration) {
-        this.duration = duration;
+        this.mDuration = duration;
     }
+
+    public int getListTextColor() {
+        return mListTextColor;
+    }
+
+    public void setListTextColor(int listTextColor) {
+        this.mListTextColor = listTextColor;
+    }
+
+    public int getListBackgroundId() {
+        return mListBackgroundId;
+    }
+
+    public void setListBackgroundId(int listBackgroundId) {
+        this.mListBackgroundId = listBackgroundId;
+    }
+
+    //endregion
 
     public void setMenuElements(String[] titles){
         if(titles != null)
@@ -301,8 +337,11 @@ public class WearMenu extends FrameLayout implements View.OnClickListener {
     public void setMenuElements(List<String> titles, List<Drawable> drawables){
         setContentView(R.layout.wearmenu_list);
 
+        if(mListBackgroundId > 0)
+            findViewById(R.id.wearmenu_listview_container).setBackgroundResource(mListBackgroundId);
+
         WearableListView listView = (WearableListView) findViewById(R.id.wearmenu_listview);
-        listView.setAdapter(new WearMenuListListViewAdapter(getContext(), titles, drawables, mListSelectedColor));
+        listView.setAdapter(new WearMenuListListViewAdapter(getContext(), titles, drawables, mListTextColor, mListSelectedColor));
         listView.setClickListener(new WearableListView.ClickListener() {
             @Override
             public void onClick(WearableListView.ViewHolder viewHolder) {
