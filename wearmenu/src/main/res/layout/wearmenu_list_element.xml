@@ -13,7 +13,7 @@
         android:layout_width="30dp"
         android:layout_margin="16dp"
         android:scaleType="centerInside"
-        android:padding="7dp"
+        android:padding="9dp"
         android:background="@drawable/wl_circle"
        />
     <TextView

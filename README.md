@@ -3,6 +3,8 @@ WearMenu
 
 [![Build Status](https://travis-ci.org/florent37/WearMenu.svg)](https://travis-ci.org/florent37/WearMenu)
 
+![alt poster](https://raw.github.com/florent37/WearMenu/master/wear/src/main/res/drawable/wearmenu_small.png)
+
 WearMenu is an Android Wear Menu implementation
 
 ![alt gif](https://raw.github.com/florent37/WearMenu/master/wear/src/main/res/drawable/wearmenu.gif)

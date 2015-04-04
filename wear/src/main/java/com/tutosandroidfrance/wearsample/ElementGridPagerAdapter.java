@@ -14,8 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.github.florent37.davinci.DaVinci;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +22,7 @@ public class ElementGridPagerAdapter extends FragmentGridPagerAdapter {
     private Context mContext;
     private List<Row> mRows;
     private List<Element> mElement;
+    private Drawable mBackgroundDrawable;
 
     public ElementGridPagerAdapter(Context context, List<Element> elements, FragmentManager fm) {
         super(fm);
@@ -31,6 +30,8 @@ public class ElementGridPagerAdapter extends FragmentGridPagerAdapter {
         this.mContext = context;
         this.mRows = new ArrayList<>();
         this.mElement = elements;
+
+        this.mBackgroundDrawable = mContext.getResources().getDrawable(R.drawable.wearmenu_background);
 
         //Construit le tableau des éléménts à afficher
         for (Element element : elements) {
@@ -64,7 +65,7 @@ public class ElementGridPagerAdapter extends FragmentGridPagerAdapter {
     //le drawable affichée en background pour la ligne [row]
     @Override
     public Drawable getBackgroundForRow(final int row) {
-        return DaVinci.with(mContext).load(mElement.get(row).getUrl()).into(this,row);
+        return mBackgroundDrawable;
     }
 
     @Override

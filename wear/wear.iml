@@ -88,11 +88,7 @@
     <orderEntry type="library" exported="" name="wearable-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-21.0.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-21.0.0" level="project" />
-    <orderEntry type="library" exported="" name="davinci-1.0.0" level="project" />
-    <orderEntry type="library" exported="" name="play-services-wearable-6.5.87" level="project" />
     <orderEntry type="library" exported="" name="support-v4-21.0.0" level="project" />
-    <orderEntry type="library" exported="" name="play-services-base-6.5.87" level="project" />
-    <orderEntry type="library" exported="" name="disklrucache-2.0.2" level="project" />
     <orderEntry type="module" module-name="wearmenu" exported="" />
   </component>
 </module>
