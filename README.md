@@ -204,6 +204,13 @@ Author: Florent Champigny
 </a>
 
 
+Pictures by Logan Bourgouin
+
+<a href="https://plus.google.com/+LoganBOURGOIN">
+  <img alt="Follow me on Google+"
+       src="https://raw.githubusercontent.com/florent37/DaVinci/master/mobile/src/main/res/drawable-hdpi/gplus.png" />
+</a>
+
 License
 --------
 
