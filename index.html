@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Wearmenu by florent37</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Wearmenu</h1>
+      <h2 class="project-tagline">An Android Wear Menu implementation</h2>
+      <a href="https://github.com/florent37/WearMenu" class="btn">View on GitHub</a>
+      <a href="https://github.com/florent37/WearMenu/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/florent37/WearMenu/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="wearmenu" class="anchor" href="#wearmenu" aria-hidden="true"><span class="octicon octicon-link"></span></a>WearMenu</h1>
+
+<p><a href="https://travis-ci.org/florent37/WearMenu"><img src="https://travis-ci.org/florent37/WearMenu.svg" alt="Build Status"></a></p>
+
+<p><img src="https://raw.github.com/florent37/WearMenu/master/wear/src/main/res/drawable/wearmenu_small.png" alt="alt poster"></p>
+
+<p>WearMenu is an Android Wear Menu implementation</p>
+
+<p><img src="https://raw.github.com/florent37/WearMenu/master/wear/src/main/res/drawable/wearmenu.gif" alt="alt gif"></p>
+
+<h2>
+<a id="download" class="anchor" href="#download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download</h2>
+
+<p>In your root build.gradle add</p>
+
+<div class="highlight highlight-groovy"><pre>repositories {
+    maven {
+        url  <span class="pl-s"><span class="pl-pds">"</span>http://dl.bintray.com/florent37/maven<span class="pl-pds">"</span></span>
+    }
+}</pre></div>
+
+<p>In your wear module <a href="https://bintray.com/florent37/maven/WearMenu/_latestVersion"><img src="https://api.bintray.com/packages/florent37/maven/WearMenu/images/download.svg" alt="Download"></a></p>
+
+<div class="highlight highlight-groovy"><pre>compile <span class="pl-s"><span class="pl-pds">'</span>com.github.florent37:wearmenu:1.0.0@aar<span class="pl-pds">'</span></span></pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Add WearMenu above your GridViewPager</p>
+
+<div class="highlight highlight-xml"><pre>&lt;?<span class="pl-ent">xml</span><span class="pl-e"> version</span>=<span class="pl-s"><span class="pl-pds">"</span>1.0<span class="pl-pds">"</span></span><span class="pl-e"> encoding</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span>?&gt;
+&lt;<span class="pl-ent">com</span>.github.florent37.WearMenu
+    <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">android</span>=<span class="pl-s"><span class="pl-pds">"</span>http://schemas.android.com/apk/res/android<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">app</span>=<span class="pl-s"><span class="pl-pds">"</span>http://schemas.android.com/apk/res-auto<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>@+id/wear_menu<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">wearMenuPosition</span>=<span class="pl-s"><span class="pl-pds">"</span>bottomLeft<span class="pl-pds">"</span></span>
+    &gt;
+
+    &lt;<span class="pl-ent">android</span>.support.wearable.view.GridViewPager
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>@+id/pager<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">keepScreenOn</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>/&gt;
+
+    &lt;<span class="pl-ent">android</span>.support.wearable.view.DotsPageIndicator
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>@+id/page_indicator<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>wrap_content<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>wrap_content<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_gravity</span>=<span class="pl-s"><span class="pl-pds">"</span>center_horizontal|bottom<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_marginBottom</span>=<span class="pl-s"><span class="pl-pds">"</span>5dp<span class="pl-pds">"</span></span>/&gt;
+
+&lt;/<span class="pl-ent">com</span>.github.florent37.WearMenu&gt;</pre></div>
+
+<p>You can change the opening direction of the WearMenu</p>
+
+<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">com</span>.github.florent37.WearMenu
+
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">wearMenuPosition</span>=<span class="pl-s"><span class="pl-pds">"</span>bottomLeft<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">wearMenuPosition</span>=<span class="pl-s"><span class="pl-pds">"</span>bottomRight<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">wearMenuPosition</span>=<span class="pl-s"><span class="pl-pds">"</span>topLeft<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">wearMenuPosition</span>=<span class="pl-s"><span class="pl-pds">"</span>topRight<span class="pl-pds">"</span></span></pre></div>
+
+<p>To open/close manually the WearMenu</p>
+
+<div class="highlight highlight-java"><pre><span class="pl-smi">WearMenu</span> wearMenu <span class="pl-k">=</span> (<span class="pl-smi">WearMenu</span>) findViewById(<span class="pl-smi">R</span><span class="pl-k">.</span>id<span class="pl-k">.</span>wear_menu);
+wearMenu<span class="pl-k">.</span>toggle();</pre></div>
+
+<h2>
+<a id="display-a-list" class="anchor" href="#display-a-list" aria-hidden="true"><span class="octicon octicon-link"></span></a>Display a list</h2>
+
+<p>In your activity, customise the wear list menu</p>
+
+<div class="highlight highlight-java"><pre>wearMenu<span class="pl-k">.</span>setMenuElements(
+                <span class="pl-k">new</span> <span class="pl-smi">String</span>[]{
+                        <span class="pl-s"><span class="pl-pds">"</span>title 1<span class="pl-pds">"</span></span>,
+                        <span class="pl-s"><span class="pl-pds">"</span>title 2<span class="pl-pds">"</span></span>,
+                        <span class="pl-s"><span class="pl-pds">"</span>title 3<span class="pl-pds">"</span></span>,
+                        <span class="pl-s"><span class="pl-pds">"</span>title 4<span class="pl-pds">"</span></span>
+                });</pre></div>
+
+<p>You can display elements with icons</p>
+
+<div class="highlight highlight-java"><pre>wearMenu<span class="pl-k">.</span>setMenuElements(
+                <span class="pl-k">new</span> <span class="pl-smi">String</span>[]{
+                        <span class="pl-s"><span class="pl-pds">"</span>title 1<span class="pl-pds">"</span></span>,
+                        <span class="pl-s"><span class="pl-pds">"</span>title 2<span class="pl-pds">"</span></span>,
+                        <span class="pl-s"><span class="pl-pds">"</span>title 3<span class="pl-pds">"</span></span>,
+                        <span class="pl-s"><span class="pl-pds">"</span>title 4<span class="pl-pds">"</span></span>
+                },
+                <span class="pl-k">new</span> <span class="pl-smi">Drawable</span>[]{
+                        getResources()<span class="pl-k">.</span>getDrawable(<span class="pl-smi">R</span><span class="pl-k">.</span>drawable<span class="pl-k">.</span>icon1),
+                        getResources()<span class="pl-k">.</span>getDrawable(<span class="pl-smi">R</span><span class="pl-k">.</span>drawable<span class="pl-k">.</span>icon2),
+                        getResources()<span class="pl-k">.</span>getDrawable(<span class="pl-smi">R</span><span class="pl-k">.</span>drawable<span class="pl-k">.</span>icon3),
+                        getResources()<span class="pl-k">.</span>getDrawable(<span class="pl-smi">R</span><span class="pl-k">.</span>drawable<span class="pl-k">.</span>icon4)
+                });</pre></div>
+
+<p>And get back the selected element</p>
+
+<div class="highlight highlight-java"><pre>wearMenu<span class="pl-k">.</span>setWearMenuListener(<span class="pl-k">new</span> <span class="pl-smi">WearMenu</span>.<span class="pl-smi">WearMenuListener</span>() {
+            <span class="pl-k">@Override</span>
+            <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onWearMenuListClicked</span>(<span class="pl-k">int</span> <span class="pl-v">position</span>) {
+
+            }
+        });</pre></div>
+
+<h2>
+<a id="customisation" class="anchor" href="#customisation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Customisation</h2>
+
+<p>You can display a custom view in WearMenu</p>
+
+<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">com</span>.github.florent37.WearMenu
+    <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">android</span>=<span class="pl-s"><span class="pl-pds">"</span>http://schemas.android.com/apk/res/android<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">app</span>=<span class="pl-s"><span class="pl-pds">"</span>http://schemas.android.com/apk/res-auto<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>@+id/wear_menu<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">wearMenuLayout</span>=<span class="pl-s"><span class="pl-pds">"</span>@layout/myCustomView<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">wearMenuPosition</span>=<span class="pl-s"><span class="pl-pds">"</span>bottomLeft<span class="pl-pds">"</span></span>
+    &gt;</pre></div>
+
+<p>Changing colors &amp; backgrounds</p>
+
+<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">com</span>.github.florent37.WearMenu
+    <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">android</span>=<span class="pl-s"><span class="pl-pds">"</span>http://schemas.android.com/apk/res/android<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">app</span>=<span class="pl-s"><span class="pl-pds">"</span>http://schemas.android.com/apk/res-auto<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>@+id/wear_menu<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">wearMenuPosition</span>=<span class="pl-s"><span class="pl-pds">"</span>bottomLeft<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">wearMenuListTextColor</span>=<span class="pl-s"><span class="pl-pds">"</span>@color/blue<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">wearMenuListSelectedColor</span>=<span class="pl-s"><span class="pl-pds">"</span>@color/red<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">wearMenuListBackground</span>=<span class="pl-s"><span class="pl-pds">"</span>@color/black<span class="pl-pds">"</span></span>
+    &gt;</pre></div>
+
+<p>Modify animation duration (500ms by default)</p>
+
+<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">com</span>.github.florent37.WearMenu
+    <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">android</span>=<span class="pl-s"><span class="pl-pds">"</span>http://schemas.android.com/apk/res/android<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">app</span>=<span class="pl-s"><span class="pl-pds">"</span>http://schemas.android.com/apk/res-auto<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>@+id/wear_menu<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">wearMenuPosition</span>=<span class="pl-s"><span class="pl-pds">"</span>bottomLeft<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">wearMenuDuration</span>=<span class="pl-s"><span class="pl-pds">"</span>300<span class="pl-pds">"</span></span>
+    &gt;</pre></div>
+
+<h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h2>
+
+<ul>
+<li>Adding circle animation from touch position</li>
+<li>Enabling fill list from xml layout</li>
+<li>Adding preview for tools: package</li>
+<li>Adding custom colors for each list element</li>
+</ul>
+
+<h2>
+<a id="community" class="anchor" href="#community" aria-hidden="true"><span class="octicon octicon-link"></span></a>Community</h2>
+
+<p>Looking for contributors, feel free to fork !</p>
+
+<h2>
+<a id="wear" class="anchor" href="#wear" aria-hidden="true"><span class="octicon octicon-link"></span></a>Wear</h2>
+
+<p>If you want to learn wear development : <a href="http://tutos-android-france.com/developper-une-application-pour-les-montres-android-wear/">http://tutos-android-france.com/developper-une-application-pour-les-montres-android-wear/</a>.</p>
+
+<h2>
+<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits</h2>
+
+<p>Author: Florent Champigny</p>
+
+<p><a href="https://plus.google.com/+florentchampigny">
+  <img alt="Follow me on Google+" src="https://raw.githubusercontent.com/florent37/DaVinci/master/mobile/src/main/res/drawable-hdpi/gplus.png">
+</a>
+<a href="https://twitter.com/florent_champ">
+  <img alt="Follow me on Twitter" src="https://raw.githubusercontent.com/florent37/DaVinci/master/mobile/src/main/res/drawable-hdpi/twitter.png">
+</a>
+<a href="https://www.linkedin.com/profile/view?id=297860624">
+  <img alt="Follow me on LinkedIn" src="https://raw.githubusercontent.com/florent37/DaVinci/master/mobile/src/main/res/drawable-hdpi/linkedin.png">
+</a></p>
+
+<p>Pictures by Logan Bourgouin</p>
+
+<p><a href="https://plus.google.com/+LoganBOURGOIN">
+  <img alt="Follow me on Google+" src="https://raw.githubusercontent.com/florent37/DaVinci/master/mobile/src/main/res/drawable-hdpi/gplus.png">
+</a></p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>Copyright 2015 florent37, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/florent37/WearMenu">Wearmenu</a> is maintained by <a href="https://github.com/florent37">florent37</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
