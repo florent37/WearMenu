@@ -2,6 +2,7 @@ WearMenu
 =======
 
 [![Build Status](https://travis-ci.org/florent37/WearMenu.svg)](https://travis-ci.org/florent37/WearMenu)
+[![Android Weekly](https://img.shields.io/badge/android--weekly-148-blue.svg)](http://androidweekly.net/issues/issue-148)
 
 ![alt poster](https://raw.github.com/florent37/WearMenu/master/wear/src/main/res/drawable/wearmenu_small.png)
 
