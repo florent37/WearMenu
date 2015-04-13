@@ -3,6 +3,7 @@ WearMenu
 
 [![Build Status](https://travis-ci.org/florent37/WearMenu.svg)](https://travis-ci.org/florent37/WearMenu)
 [![Android Weekly](https://img.shields.io/badge/android--weekly-148-blue.svg)](http://androidweekly.net/issues/issue-148)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-WearMenu-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1715)
 
 ![alt poster](https://raw.github.com/florent37/WearMenu/master/wear/src/main/res/drawable/wearmenu_small.png)
 
