@@ -16,9 +16,11 @@ Download
 
 In your root build.gradle add
 ```groovy
-repositories {
-    maven {
-        url  "http://dl.bintray.com/florent37/maven"
+allprojects {
+    repositories {
+        maven {
+            url  "http://dl.bintray.com/florent37/maven"
+        }
     }
 }
 ```
