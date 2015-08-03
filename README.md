@@ -181,7 +181,7 @@ If you want to learn wear development : [http://tutos-android-france.com/develop
 Credits
 -------
 
-Author: Florent Champigny
+Author: Florent Champigny www.florentchampigny.com/
 
 <a href="https://plus.google.com/+florentchampigny">
   <img alt="Follow me on Google+"
